@@ -1,0 +1,125 @@
+
+create table Administrator 
+(
+Aid int primary key ,
+Ausername varchar(40),
+Apassword varchar(10)  
+);
+
+insert into Administrator values(1,'Pawan','1111');
+insert into Administrator values(2,'Nandan','2222');
+insert into Administrator values(3,'Mahindra','3333');
+
++-----+-----------+-----------+
+| Aid | Ausername | Apassword |
++-----+-----------+-----------+
+|   1 | Pawan     | 1111      |
+|   2 | Nandan    | 2222      |
+|   3 | Mahindra  | 3333      |
++-----+-----------+-----------+
+
+
+create table user 
+(
+Uid int primary key ,
+Uusername varchar(40),
+Upassword varchar(10)
+);
+
+
+insert into user values(1,'Saurav','0000');
+
++-----+-----------+-----------+
+| Uid | Uusername | Upassword |
++-----+-----------+-----------+
+|   1 | Saurav    | 0000      |
++-----+-----------+-----------+
+
+create table Businfo 
+(
+BNumber int primary key ,
+BName varchar(30),
+BRoute varchar(50),
+BType varchar(8),
+AvailSeats int ,
+departureTime Datetime,
+Arrival_Time Datetime ,
+contact varchar(10) 
+);
+
+insert into Businfo values(2626,'Nandan Travels','via pune by pass','AC',15,'2022-10-03 20:00','2022-10-04 10:00','9752195035');
+insert into Businfo values(2627,'Pawan Travels','via Bhopal','NONAC',25,'2022-10-04 19:00','2022-10-05 11:00','6235382365');
+insert into Businfo values(2628,'Mahindra Travels','via Kanpur','AC',20,'2022-10-05 18:00','2022-10-06 08:30','7536656366');
+
++---------+------------------+------------------+-------+------------+---------------------+---------------------+------------+
+| BNumber | BName            | BRoute           | BType | AvailSeats | departureTime       | Arrival_Time        | contact    |
++---------+------------------+------------------+-------+------------+---------------------+---------------------+------------+
+|    2626 | Nandan Travels   | via pune by pass | AC    |         15 | 2022-10-03 20:00:00 | 2022-10-04 10:00:00 | 9752195035 |
+|    2627 | Pawan Travels    | via Bhopal       | NONAC |         25 | 2022-10-04 19:00:00 | 2022-10-05 11:00:00 | 6235382365 |
+|    2628 | Mahindra Travels | via Kanpur       | AC    |         20 | 2022-10-05 18:00:00 | 2022-10-06 08:30:00 | 7536656366 |
++---------+------------------+------------------+-------+------------+---------------------+---------------------+------------+
+
+
+create table fare
+(
+Bnumber int primary key,
+source varchar(30),
+destination varchar(30),
+fare int ,
+foreign key (Bnumber) references Businfo(BNumber)
+);
+
+
+insert into fare values(2626,'mumbai','pune',2000);
+insert into fare values(2627,'balaghat','indore',2000);
+insert into fare values(2628,'delhi','Allahabad',2000);
+
++---------+----------+-------------+------+
+| Bnumber | source   | destination | fare |
++---------+----------+-------------+------+
+|    2626 | mumbai   | pune        | 2000 |
+|    2627 | balaghat | indore      | 2000 |
+|    2628 | delhi    | Allahabad   | 2000 |
++---------+----------+-------------+------+
+
+
+create table adminBus
+(
+Aid int ,
+busNo int,
+foreign key(aid) references administrator(aid),
+foreign key(busno) references businfo(bnumber)
+);
+
+insert into adminBus values(1,2626);
+insert into adminBus values(2,2627);
+insert into adminBus values(3,2628);
+
+
+Q wtQ get the number of seat available ?
+> select availseats from businfo where Bnumber =2626;
+
+create table BookTicket 
+(
+BNumber int primary key,
+BName varchar(30),
+passName varchar(30),
+Age int ,
+sex varchar(8),
+NoOfbookedSeat int,
+source varchar(30),
+destination varchar(30),
+tdate date
+);
+
+insert into BookTicket values(2626,'pawan travels','anup',26,'male',10,'balaghat','indore','2022-10-11');
+
+update Businfo set AvailSeats=22 where BNumber = 2626 ;
+
+
+
+
+
+
+
+
