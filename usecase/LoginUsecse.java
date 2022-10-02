@@ -24,8 +24,10 @@ public class LoginUsecse {
 			String password = scanner.next();
 		try {
 			String message =	dao.loginAdmin(username, password);
+			
 			System.out.println("Welcome to "+message+" travels");
 			
+				
 			int count = 0 ; 
 			while(count<3) {
 				
