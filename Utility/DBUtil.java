@@ -21,7 +21,7 @@ public class DBUtil {
 		String url="jdbc:mysql://localhost:3306/bus";
 		
 		try {
-			conn= DriverManager.getConnection(url,"root","anupgautam@2303");
+			conn= DriverManager.getConnection(url,"root","Saurav@119");
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
